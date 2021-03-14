@@ -1,0 +1,11 @@
+main: com.github.irvinglink.ChatFilter.ChatFilterPlugin
+version: 1.0
+api-version: 1.8
+name: ChatFilter
+description: ChatFilter by irvinglink.
+authors: [irvinglink]
+commands:
+  chatfilter:
+    description: ChatFilter main commands.
+    aliases: [cf]
+    usage: "Usage /<command> [help | reload | add | remove]"

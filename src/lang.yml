@@ -1,0 +1,5 @@
+Prefix: "&8[&bChatFilter&8]"
+No_Permission: "%prefix% &cYou do not have permission to do this&7."
+Command_Syntax: "%prefix% &cSyntax error. Try using &7%command_syntax%"
+Reloaded_Configuration_Files: "%prefix% &aConfiguration files had been reloaded&7."
+Unknown_Command: "%prefix% &cUnknown command."

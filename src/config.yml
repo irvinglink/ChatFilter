@@ -1,0 +1,27 @@
+threshold-action:
+  100:
+    action:
+      show-only-client: true # If this is enabled, filtered messages will be shown to the client and no one else
+      cancel-msg-event: true # If this is enabled, no one will see the message, it will be logged.
+    commands: [ ] # %player%, %message%, %weight%
+    executions: [ ]
+  50:
+    action:
+      show-only-client: true
+      cancel-msg-event: true
+    executions: []
+
+banned-words: # WEIGHT;NEEDED WORDS TO COUNT;WORDS SEPARATED BY ,
+  - "100;1;dm advertise,dm bot,dm advertise,dm botting"
+  - "100;2;dm,botting,discord,user account"
+  - "100;3;message,discord,bot,advertise,advertising"
+  - "100;2;against,tos,discord"
+  - "100;4;self promotion,discord,bot,advertise,tos,spamming,selfpromo,friended,random,invite,dms,adv,ads,dm me,scum"
+
+settings:
+  ignored-permission: "filter.bypass" # Permission to bypass the filter check.
+
+messages:
+  show-only-client-log: "&C&LFILTER &8» &e%player% &7said: %message%"
+
+whitelisted-ips: [server.example.com]
