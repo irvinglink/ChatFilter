@@ -24,7 +24,9 @@ public class AsyncPlayerChat implements Listener {
 
         boolean isValid = plugin.getChatFilterHandler().checkMessage(event);
 
-        if (!isValid) event.setCancelled(true);
+        if (!isValid) {
+
+        }
 
     }
 }

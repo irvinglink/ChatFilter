@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,6 +26,7 @@ public class ChatFilterHandler {
         final List<WordCategory> wordCategories = plugin.getWordCategories();
 
         int count = 0;
+        int categoryNumber = 1;
 
         for (WordCategory category : wordCategories) {
 
@@ -32,17 +34,28 @@ public class ChatFilterHandler {
 
             for (int i = 0; i < regexList.size(); i++) {
 
+
                 Pattern pattern = Pattern.compile(regexList.get(i));
                 Matcher matcher = pattern.matcher(message);
 
                 while (matcher.find()) {
-                    System.out.println(matcher.group(0));
                     count++;
+                }
+
+                if (count >= category.getWordsCount()) {
+
+                    if (!plugin.getFilteredPlayers().containsKey(uuid)) plugin.getFilteredPlayers().put(uuid, category.getWeight());
+
+                    Integer oldWeight = plugin.getFilteredPlayers().get(uuid);
+                    plugin.getFilteredPlayers().replace(uuid, oldWeight + category.getWeight());
+
+                    return false;
                 }
 
             }
 
-            if (count >= category.getWeight()) return false;
+            categoryNumber++;
+            count = 0;
 
         }
 
