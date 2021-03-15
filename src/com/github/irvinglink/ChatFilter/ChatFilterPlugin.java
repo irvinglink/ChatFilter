@@ -39,13 +39,14 @@ public class ChatFilterPlugin extends JavaPlugin {
     @Override
     public void onLoad() {
 
+        createFiles();
+
         this.chat = new Chat();
         this.loaderMonitor = new LoaderMonitor();
         this.chatFilterHandler = new ChatFilterHandler();
 
         chat.registerHook();
 
-        createFiles();
 
     }
 

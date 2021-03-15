@@ -56,7 +56,6 @@ public class Chat {
 
             if (value != null) text = text.replaceAll(Pattern.quote(matcher.group()), Matcher.quoteReplacement(value));
 
-
         }
 
         return (color) ? str(text) : text;
