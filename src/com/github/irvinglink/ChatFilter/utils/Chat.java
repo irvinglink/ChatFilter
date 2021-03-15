@@ -56,7 +56,7 @@ public class Chat {
 
         if (text == null) return null;
 
-        text = PlaceholderAPI.setPlaceholders(player, text);
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) text = PlaceholderAPI.setPlaceholders(player, text);
 
         Matcher matcher = this.pattern.matcher(text);
 
