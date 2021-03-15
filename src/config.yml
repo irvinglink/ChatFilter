@@ -3,8 +3,7 @@ threshold-action:
     action:
       show-only-client: true # If this is enabled, filtered messages will be shown to the client and no one else
       cancel-msg-event: true # If this is enabled, no one will see the message, it will be logged.
-    commands: [ ] # %player%, %message%, %weight%
-    executions: [ ]
+    executions: [] # %player%, %message%, %weight%
   50:
     action:
       show-only-client: true

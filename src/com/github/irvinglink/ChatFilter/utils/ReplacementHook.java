@@ -19,6 +19,15 @@ public class ReplacementHook implements IReplacement {
             case "command_syntax":
                 return str;
 
+            case "player":
+                if (player != null) return player.getName();
+
+            case "target":
+                if (target != null) return target.getName();
+
+            case "weight":
+                if (player != null) return String.valueOf(plugin.getFilteredPlayers().get(player.getUniqueId()));
+
             default:
                 return null;
 

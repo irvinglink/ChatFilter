@@ -16,6 +16,8 @@ public class WordCategoryLoader implements ILoader {
 
         FileConfiguration config = plugin.getConfig();
 
+        if (!config.contains("banned-words")) return;
+
         List<String> lines = config.getStringList("banned-words");
 
         for (int i = 0; i < lines.size(); i++) {

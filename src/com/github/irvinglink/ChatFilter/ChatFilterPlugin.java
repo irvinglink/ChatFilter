@@ -1,8 +1,10 @@
 package com.github.irvinglink.ChatFilter;
 
 import com.github.irvinglink.ChatFilter.commands.ChatFilterCommand;
-import com.github.irvinglink.ChatFilter.handler.ChatFilterHandler;
+import com.github.irvinglink.ChatFilter.handlers.ChatFilterHandler;
 import com.github.irvinglink.ChatFilter.listeners.AsyncPlayerChat;
+import com.github.irvinglink.ChatFilter.listeners.InvalidWord;
+import com.github.irvinglink.ChatFilter.models.ThresholdAction;
 import com.github.irvinglink.ChatFilter.models.WordCategory;
 import com.github.irvinglink.ChatFilter.monitors.LoaderMonitor;
 import com.github.irvinglink.ChatFilter.utils.Chat;
@@ -13,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.*;
@@ -27,6 +30,10 @@ public class ChatFilterPlugin extends JavaPlugin {
 
     private final Map<UUID, Integer> filteredPlayers = Collections.synchronizedMap(new HashMap<>());
     private final List<WordCategory> wordCategories = Collections.synchronizedList(new ArrayList<>());
+
+    private final List<ThresholdAction> thresholdActions = Collections.synchronizedList(new ArrayList<>());
+
+    private final List<String> whitelistedIps = Collections.synchronizedList(new ArrayList<>());
 
     private Chat chat;
     private ChatFilterHandler chatFilterHandler;
@@ -56,6 +63,7 @@ public class ChatFilterPlugin extends JavaPlugin {
         new ChatFilterCommand("chatfilter", "ChatFilter.Admin", true);
 
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
+        getServer().getPluginManager().registerEvents(new InvalidWord(), this);
 
     }
 
@@ -204,5 +212,13 @@ public class ChatFilterPlugin extends JavaPlugin {
 
     public LoaderMonitor getLoaderMonitor() {
         return loaderMonitor;
+    }
+
+    public List<ThresholdAction> getThresholdActions() {
+        return thresholdActions;
+    }
+
+    public List<String> getWhitelistedIps() {
+        return whitelistedIps;
     }
 }

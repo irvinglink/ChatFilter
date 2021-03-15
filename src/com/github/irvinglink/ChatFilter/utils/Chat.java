@@ -3,6 +3,7 @@ package com.github.irvinglink.ChatFilter.utils;
 import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,6 +36,14 @@ public class Chat {
 
     public String replace(String text, boolean color) {
         return replace(null, null, null, text, color);
+    }
+
+    public String replace(Player player, String text, boolean color) {
+        return replace(player, null, null, text, color);
+    }
+
+    public String replace(OfflinePlayer player, OfflinePlayer target, String text, boolean color) {
+        return replace(player, target, null, text, color);
     }
 
     public String replace(OfflinePlayer player, String str, String text, boolean color) {

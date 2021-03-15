@@ -1,4 +1,4 @@
-package com.github.irvinglink.ChatFilter.handler;
+package com.github.irvinglink.ChatFilter.handlers;
 
 import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
 import com.github.irvinglink.ChatFilter.models.WordCategory;
@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +25,6 @@ public class ChatFilterHandler {
         final List<WordCategory> wordCategories = plugin.getWordCategories();
 
         int count = 0;
-        int categoryNumber = 1;
 
         for (WordCategory category : wordCategories) {
 
@@ -44,9 +42,13 @@ public class ChatFilterHandler {
 
                 if (count >= category.getWordsCount()) {
 
-                    if (!plugin.getFilteredPlayers().containsKey(uuid)) plugin.getFilteredPlayers().put(uuid, category.getWeight());
+                    if (!plugin.getFilteredPlayers().containsKey(uuid)) {
+                        plugin.getFilteredPlayers().put(uuid, category.getWeight());
+                        return false;
+                    }
 
                     Integer oldWeight = plugin.getFilteredPlayers().get(uuid);
+
                     plugin.getFilteredPlayers().replace(uuid, oldWeight + category.getWeight());
 
                     return false;
@@ -54,7 +56,6 @@ public class ChatFilterHandler {
 
             }
 
-            categoryNumber++;
             count = 0;
 
         }

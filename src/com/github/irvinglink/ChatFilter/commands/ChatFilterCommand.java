@@ -3,15 +3,20 @@ package com.github.irvinglink.ChatFilter.commands;
 import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
 import com.github.irvinglink.ChatFilter.commands.builders.CommandBuilder;
 import com.github.irvinglink.ChatFilter.commands.builders.SubCommand;
+import com.github.irvinglink.ChatFilter.commands.subCommands.AddIpSubCommand;
 import com.github.irvinglink.ChatFilter.commands.subCommands.ReloadSubCommand;
 import com.github.irvinglink.ChatFilter.utils.Chat;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ChatFilterCommand extends CommandBuilder {
+public class ChatFilterCommand extends CommandBuilder implements TabCompleter {
 
     private final ChatFilterPlugin plugin = ChatFilterPlugin.getPlugin(ChatFilterPlugin.class);
     private final Chat chat = this.plugin.getChat();
@@ -21,6 +26,7 @@ public class ChatFilterCommand extends CommandBuilder {
     public ChatFilterCommand(String cmdName, String permission, boolean console) {
         super(cmdName, permission, console);
         subCommands.add(new ReloadSubCommand());
+        subCommands.add(new AddIpSubCommand());
 
     }
 
@@ -64,4 +70,27 @@ public class ChatFilterCommand extends CommandBuilder {
 
     }
 
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+
+        if (!(sender instanceof Player)) return null;
+
+        List<String> output = new ArrayList<>();
+
+        if (args.length == 1) {
+
+            List<String> subCommandStrList = subCommands.stream().map(SubCommand::getName).collect(Collectors.toList());
+
+            if (!(args[0].isEmpty())) {
+
+                subCommandStrList.forEach(x -> {
+                    if (x.toLowerCase().startsWith((args[0].toLowerCase()))) output.add(x);
+                });
+
+            } else return subCommandStrList;
+
+        }
+
+        return output;
+    }
 }
