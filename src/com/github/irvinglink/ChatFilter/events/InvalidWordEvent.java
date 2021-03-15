@@ -42,4 +42,7 @@ public class InvalidWordEvent extends Event {
         return weight;
     }
 
+    public String getMessage() {
+        return event.getMessage();
+    }
 }

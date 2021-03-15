@@ -17,6 +17,8 @@ public class ReplacementHook implements IReplacement {
 
             case "str":
             case "command_syntax":
+            case "message":
+            case "msg":
                 return str;
 
             case "player":

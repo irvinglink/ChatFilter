@@ -1,3 +1,4 @@
+clear-weight-cooldown: 360 # Time in seconds.
 threshold-action:
   100:
     action:
@@ -22,5 +23,6 @@ settings:
 
 messages:
   show-only-client-log: "&C&LFILTER &8» &e%player% &7said: %message%"
+  show-only-client-player: '&e%player% &7: &7%message%'
 
 whitelisted-ips: [server.example.com]

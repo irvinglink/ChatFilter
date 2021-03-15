@@ -45,7 +45,6 @@ public class ThresholdAction {
         for (int i = executions.size() - 1; i >= 0; i--) {
 
             String reward = executions.get(i);
-            System.out.println(reward);
 
             String[] rewardArgs = reward.split(" ", 2);
 

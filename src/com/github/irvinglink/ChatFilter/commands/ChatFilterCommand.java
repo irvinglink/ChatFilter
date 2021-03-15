@@ -5,6 +5,7 @@ import com.github.irvinglink.ChatFilter.commands.builders.CommandBuilder;
 import com.github.irvinglink.ChatFilter.commands.builders.SubCommand;
 import com.github.irvinglink.ChatFilter.commands.subCommands.AddIpSubCommand;
 import com.github.irvinglink.ChatFilter.commands.subCommands.ReloadSubCommand;
+import com.github.irvinglink.ChatFilter.commands.subCommands.ToggleCommand;
 import com.github.irvinglink.ChatFilter.utils.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -27,6 +28,7 @@ public class ChatFilterCommand extends CommandBuilder implements TabCompleter {
         super(cmdName, permission, console);
         subCommands.add(new ReloadSubCommand());
         subCommands.add(new AddIpSubCommand());
+        subCommands.add(new ToggleCommand());
 
     }
 

@@ -16,14 +16,16 @@ public class ThresholdLoader implements ILoader {
         FileConfiguration config = plugin.getConfig();
 
         String path = "threshold-action";
+
         if (!config.contains(path) || !config.isConfigurationSection(path)) return;
 
         for (String weightThreshold : config.getConfigurationSection(path).getKeys(false)) {
 
             try {
+
                 int weight = Integer.parseInt(weightThreshold);
                 boolean clientMessage = config.getBoolean(path + "." + weight + ".action.show-only-client");
-                boolean cancelEvent = config.getBoolean(path + "." + weight + ".cancel-msg-event");
+                boolean cancelEvent = config.getBoolean(path + "." + weight + ".action.cancel-msg-event");
 
                 List<String> executions = config.getStringList(path + "." + weight + ".executions");
 

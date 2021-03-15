@@ -5,7 +5,6 @@ name: ChatFilter
 description: ChatFilter by irvinglink.
 authors: [irvinglink]
 commands:
-  chatfilter:
+  clashfilter:
     description: ChatFilter main commands.
-    aliases: [cf]
-    usage: "Usage /<command> [help | reload | add | remove]"
+    usage: "Usage /<command> [help | reload | addIP]"
