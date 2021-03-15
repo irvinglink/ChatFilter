@@ -25,7 +25,8 @@ public class AsyncPlayerChat implements Listener {
         boolean isValid = plugin.getChatFilterHandler().checkMessage(event);
 
         if (!isValid) {
-
+            player.sendMessage("Contains in valid words"); // DEBUG
+            event.setCancelled(true);
         }
 
     }

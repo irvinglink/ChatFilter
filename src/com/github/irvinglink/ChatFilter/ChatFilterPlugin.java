@@ -1,11 +1,9 @@
 package com.github.irvinglink.ChatFilter;
 
 import com.github.irvinglink.ChatFilter.commands.ChatFilterCommand;
-import com.github.irvinglink.ChatFilter.exceptions.CreatingCategoryException;
 import com.github.irvinglink.ChatFilter.handler.ChatFilterHandler;
 import com.github.irvinglink.ChatFilter.listeners.AsyncPlayerChat;
 import com.github.irvinglink.ChatFilter.models.WordCategory;
-import com.github.irvinglink.ChatFilter.loaders.WordCategoryLoader;
 import com.github.irvinglink.ChatFilter.monitors.LoaderMonitor;
 import com.github.irvinglink.ChatFilter.utils.Chat;
 import org.bukkit.configuration.file.FileConfiguration;

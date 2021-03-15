@@ -1,7 +1,6 @@
 package com.github.irvinglink.ChatFilter.loaders;
 
 import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
-import com.github.irvinglink.ChatFilter.exceptions.CreatingCategoryException;
 import com.github.irvinglink.ChatFilter.models.WordCategory;
 import org.bukkit.configuration.file.FileConfiguration;
 
