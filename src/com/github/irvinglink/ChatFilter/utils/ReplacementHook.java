@@ -24,6 +24,10 @@ public class ReplacementHook implements IReplacement {
             case "player":
                 if (player != null) return player.getName();
 
+            case "player_displayName":
+            case "player_displayname":
+                if (player != null) return player.getPlayer().getDisplayName();
+
             case "target":
                 if (target != null) return target.getName();
 

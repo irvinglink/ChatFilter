@@ -13,13 +13,15 @@ public class WordCategory {
 
     private final int weight;
     private final int wordsCount;
+    private final boolean accumulateWeight;
     private final List<String> words;
 
     private final List<String> regexList = Collections.synchronizedList(new ArrayList<>());
 
-    public WordCategory(int weight, int wordsCount, List<String> words) {
+    public WordCategory(int weight, int wordsCount, boolean accumulateWeight, List<String> words) {
         this.weight = weight;
         this.wordsCount = wordsCount;
+        this.accumulateWeight = accumulateWeight;
         this.words = words;
 
 
@@ -38,6 +40,10 @@ public class WordCategory {
 
     public int getWordsCount() {
         return wordsCount;
+    }
+
+    public boolean isAccumulateWeight() {
+        return accumulateWeight;
     }
 
     public List<String> getWords() {
@@ -71,6 +77,5 @@ public class WordCategory {
     public String toString() {
         return new StringBuilder().append("WordCategory{weight=").append(weight).append(", wordsCount=").append(wordsCount).append(", words=").append(words).append("}").toString();
     }
-
 
 }

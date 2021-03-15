@@ -9,6 +9,8 @@ import com.github.irvinglink.ChatFilter.models.ThresholdAction;
 import com.github.irvinglink.ChatFilter.models.WordCategory;
 import com.github.irvinglink.ChatFilter.monitors.LoaderMonitor;
 import com.github.irvinglink.ChatFilter.utils.Chat;
+import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -4,6 +4,7 @@ api-version: 1.8
 name: ChatFilter
 description: ChatFilter by irvinglink.
 authors: [irvinglink]
+softdepend: [PlaceHolderAPI]
 commands:
   clashfilter:
     description: ChatFilter main commands.

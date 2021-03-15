@@ -26,16 +26,18 @@ public class WordCategoryLoader implements ILoader {
 
             int firstIndex = line.indexOf(';');
             int secondIndex = line.indexOf(';', firstIndex + 1);
+            int thirdIndex = line.indexOf(';', secondIndex + 1);
 
             int weight = Integer.parseInt(line.substring(0, firstIndex));
             int wordCount = Integer.parseInt(line.substring(firstIndex + 1, secondIndex));
 
-            String words = line.substring(secondIndex + 1);
+            boolean accumulateWeight = Boolean.parseBoolean(line.substring(secondIndex + 1, thirdIndex));
+
+            String words = line.substring(thirdIndex + 1);
 
             List<String> wordList = Arrays.asList(words.split(","));
 
-            plugin.getWordCategories().add(new WordCategory(weight, wordCount, wordList));
-
+            plugin.getWordCategories().add(new WordCategory(weight, wordCount, accumulateWeight, wordList));
 
         }
 

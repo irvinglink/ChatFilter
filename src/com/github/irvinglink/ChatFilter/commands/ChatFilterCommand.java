@@ -89,6 +89,8 @@ public class ChatFilterCommand extends CommandBuilder implements TabCompleter {
                     if (x.toLowerCase().startsWith((args[0].toLowerCase()))) output.add(x);
                 });
 
+                output.add("help");
+
             } else return subCommandStrList;
 
         }

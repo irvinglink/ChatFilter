@@ -4,6 +4,7 @@ import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
 import com.github.irvinglink.ChatFilter.utils.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Comparator;
 import java.util.List;
@@ -49,27 +50,44 @@ public class ThresholdAction {
             String[] rewardArgs = reward.split(" ", 2);
 
             switch (rewardArgs[0].toLowerCase()) {
+
                 case "[message]":
                     player.sendMessage(chat.replace(player, rewardArgs[1], true));
                     break;
 
                 case "[console]":
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), chat.replace(player, rewardArgs[1], true));
-                    break;
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), chat.replace(player, rewardArgs[1], true));
+                        }
+                    }.runTask(plugin);
 
-                case "[player]":
-                    if (player.isOnline())
-                        Objects.requireNonNull(player.getPlayer()).performCommand(chat.replace(player, rewardArgs[1], true));
+            break;
 
-                    break;
+            case "[player]":
+                if (player.isOnline()) {
 
-                default:
-                    break;
+                    new BukkitRunnable() {
 
-            }
+                        @Override
+                        public void run() {
+                            Objects.requireNonNull(player.getPlayer()).performCommand(chat.replace(player, rewardArgs[1], true));
+                        }
+
+                    }.runTask(plugin);
+                }
+
+                break;
+
+            default:
+                break;
 
         }
+
     }
+
+}
 
     @Override
     public boolean equals(Object o) {

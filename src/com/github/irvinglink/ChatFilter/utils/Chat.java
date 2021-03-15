@@ -1,7 +1,9 @@
 package com.github.irvinglink.ChatFilter.utils;
 
 import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -67,6 +69,8 @@ public class Chat {
 
         }
 
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) return (color) ? PlaceholderAPI.setPlaceholders(player,str(text)) : PlaceholderAPI.setPlaceholders(player,text);
+        
         return (color) ? str(text) : text;
     }
 }

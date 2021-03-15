@@ -47,9 +47,11 @@ public class ChatFilterHandler {
                         return false;
                     }
 
-                    Integer oldWeight = plugin.getFilteredPlayers().get(uuid);
+                    if (category.isAccumulateWeight()) {
+                        Integer oldWeight = plugin.getFilteredPlayers().get(uuid);
 
-                    plugin.getFilteredPlayers().replace(uuid, oldWeight + category.getWeight());
+                        plugin.getFilteredPlayers().replace(uuid, oldWeight + category.getWeight());
+                    }
 
                     return false;
                 }

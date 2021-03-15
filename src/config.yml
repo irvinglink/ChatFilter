@@ -1,28 +1,42 @@
-clear-weight-cooldown: 360 # Time in seconds.
+clear-weight-cooldown: 360
 threshold-action:
-  100:
+  '25':
     action:
-      show-only-client: true # If this is enabled, filtered messages will be shown to the client and no one else
-      cancel-msg-event: true # If this is enabled, no one will see the message, it will be logged.
-    executions: [] # %player%, %message%, %weight%
-  50:
+      show-only-client: true
+      cancel-msg-event: false
+    executions:
+      - '[message] &a%player% &7>> &b%weight%'
+  '100':
+    action:
+      show-only-client: false
+      cancel-msg-event: true
+    executions:
+      - '[message] &c&lHey! Stop making spam!'
+  '10':
+    action:
+      show-only-client: false
+      cancel-msg-event: false
+    executions:
+      - '[message] &c&lHey! Be careful!'
+  '50':
     action:
       show-only-client: true
       cancel-msg-event: true
-    executions: []
-
-banned-words: # WEIGHT;NEEDED WORDS TO COUNT;WORDS SEPARATED BY ,
-  - "100;1;dm advertise,dm bot,dm advertise,dm botting"
-  - "100;2;dm,botting,discord,user account"
-  - "100;3;message,discord,bot,advertise,advertising"
-  - "100;2;against,tos,discord"
-  - "100;4;self promotion,discord,bot,advertise,tos,spamming,selfpromo,friended,random,invite,dms,adv,ads,dm me,scum"
-
+    executions:
+      - '[player] help'
+banned-words:
+  - 100;1;false;dm advertise,dm bot,dm advertise,dm botting
+  - 100;2;true;dm,botting,discord,user account
+  - 100;3;false;message,discord,bot,advertise,advertising
+  - 100;2;false;against,tos,discord
+  - 20;2;false;boi,gggg,eeee
+  - 10;1;false;kkkkkk
+  - 28;1;false;ddsddssd
+  - 50;4;true;self promotion,discord,bot,advertise,tos,spamming,selfpromo,friended,random,invite,dms,adv,ads,dm me,scum
 settings:
-  ignored-permission: "filter.bypass" # Permission to bypass the filter check.
-
+  ignored-permission: filter.bypass
 messages:
-  show-only-client-log: "&C&LFILTER &8» &e%player% &7said: %message%"
-  show-only-client-player: '&e%player% &7: &7%message%'
-
-whitelisted-ips: [server.example.com]
+  show-only-client-log: '&C&LFILTER &8» &e%player% &7said: %message%'
+  show-only-client-player: '<%player_displayname%> %message%'
+whitelisted-ips:
+  - server.example.com
