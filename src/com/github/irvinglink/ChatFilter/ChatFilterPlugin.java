@@ -72,6 +72,11 @@ public class ChatFilterPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
         getServer().getPluginManager().registerEvents(new InvalidWord(), this);
 
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            System.out.println("[ChatFilter] PlaceHolderAPI enabled");
+
+        } else System.out.println("[ChatFilter] PlaceHolderAPI has not been found");
+
     }
 
     @Override

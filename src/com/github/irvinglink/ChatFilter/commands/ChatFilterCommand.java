@@ -82,6 +82,7 @@ public class ChatFilterCommand extends CommandBuilder implements TabCompleter {
         if (args.length == 1) {
 
             List<String> subCommandStrList = subCommands.stream().map(SubCommand::getName).collect(Collectors.toList());
+            subCommandStrList.add("help");
 
             if (!(args[0].isEmpty())) {
 
@@ -89,9 +90,9 @@ public class ChatFilterCommand extends CommandBuilder implements TabCompleter {
                     if (x.toLowerCase().startsWith((args[0].toLowerCase()))) output.add(x);
                 });
 
-                output.add("help");
 
             } else return subCommandStrList;
+
 
         }
 

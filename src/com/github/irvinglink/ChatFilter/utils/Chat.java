@@ -56,6 +56,8 @@ public class Chat {
 
         if (text == null) return null;
 
+        text = PlaceholderAPI.setPlaceholders(player, text);
+
         Matcher matcher = this.pattern.matcher(text);
 
         while (matcher.find()) {
@@ -69,8 +71,6 @@ public class Chat {
 
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) return (color) ? PlaceholderAPI.setPlaceholders(player,str(text)) : PlaceholderAPI.setPlaceholders(player,text);
-        
         return (color) ? str(text) : text;
     }
 }
