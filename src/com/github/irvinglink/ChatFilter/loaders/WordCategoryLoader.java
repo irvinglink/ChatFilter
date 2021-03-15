@@ -1,18 +1,19 @@
-package com.github.irvinglink.ChatFilter.monitor;
+package com.github.irvinglink.ChatFilter.loaders;
 
 import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
 import com.github.irvinglink.ChatFilter.exceptions.CreatingCategoryException;
-import com.github.irvinglink.ChatFilter.model.WordCategory;
+import com.github.irvinglink.ChatFilter.models.WordCategory;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class WordCategoryLoader {
+public class WordCategoryLoader implements ILoader {
 
     private final ChatFilterPlugin plugin = ChatFilterPlugin.getPlugin(ChatFilterPlugin.class);
 
-    public void load() throws CreatingCategoryException {
+    @Override
+    public void load() {
 
         FileConfiguration config = plugin.getConfig();
 
@@ -20,38 +21,30 @@ public class WordCategoryLoader {
 
         for (int i = 0; i < lines.size(); i++) {
 
-            try {
-                String line = lines.get(i);
+            String line = lines.get(i);
 
-                int firstIndex = line.indexOf(';');
-                int secondIndex = line.indexOf(';', firstIndex + 1);
+            int firstIndex = line.indexOf(';');
+            int secondIndex = line.indexOf(';', firstIndex + 1);
 
-                int weight = Integer.parseInt(line.substring(0, firstIndex));
-                int wordCount = Integer.parseInt(line.substring(firstIndex + 1, secondIndex));
+            int weight = Integer.parseInt(line.substring(0, firstIndex));
+            int wordCount = Integer.parseInt(line.substring(firstIndex + 1, secondIndex));
 
-                String words = line.substring(secondIndex + 1);
+            String words = line.substring(secondIndex + 1);
 
-                List<String> wordList = Arrays.asList(words.split(","));
+            List<String> wordList = Arrays.asList(words.split(","));
 
-                plugin.getWordCategories().add(new WordCategory(weight, wordCount, wordList));
+            plugin.getWordCategories().add(new WordCategory(weight, wordCount, wordList));
 
-            } catch (Exception e) {
-                throw new CreatingCategoryException(i);
-            }
 
         }
 
     }
 
+    @Override
     public void update() {
 
         if (!plugin.getWordCategories().isEmpty()) plugin.getWordCategories().clear();
-
-        try {
-            load();
-        } catch (CreatingCategoryException e) {
-            e.printStackTrace();
-        }
+        load();
 
     }
 

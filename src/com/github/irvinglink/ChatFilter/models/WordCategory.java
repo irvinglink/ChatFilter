@@ -1,4 +1,4 @@
-package com.github.irvinglink.ChatFilter.model;
+package com.github.irvinglink.ChatFilter.models;
 
 import com.github.irvinglink.ChatFilter.ChatFilterPlugin;
 

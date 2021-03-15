@@ -32,8 +32,7 @@ public class ReloadSubCommand implements SubCommand {
 
             plugin.reloadConfig();
 
-            plugin.getWordCategoryLoader().update();
-
+            plugin.getLoaderMonitor().update();
             sender.sendMessage(chat.replace(null, getSyntax(), plugin.getLang().getString("Reloaded_Configuration_Files"), true));
 
         } else

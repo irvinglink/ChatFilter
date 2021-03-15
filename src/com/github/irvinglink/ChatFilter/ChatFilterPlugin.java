@@ -4,8 +4,9 @@ import com.github.irvinglink.ChatFilter.commands.ChatFilterCommand;
 import com.github.irvinglink.ChatFilter.exceptions.CreatingCategoryException;
 import com.github.irvinglink.ChatFilter.handler.ChatFilterHandler;
 import com.github.irvinglink.ChatFilter.listeners.AsyncPlayerChat;
-import com.github.irvinglink.ChatFilter.model.WordCategory;
-import com.github.irvinglink.ChatFilter.monitor.WordCategoryLoader;
+import com.github.irvinglink.ChatFilter.models.WordCategory;
+import com.github.irvinglink.ChatFilter.loaders.WordCategoryLoader;
+import com.github.irvinglink.ChatFilter.monitors.LoaderMonitor;
 import com.github.irvinglink.ChatFilter.utils.Chat;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -30,15 +31,16 @@ public class ChatFilterPlugin extends JavaPlugin {
     private final List<WordCategory> wordCategories = Collections.synchronizedList(new ArrayList<>());
 
     private Chat chat;
-    private WordCategoryLoader wordCategoryLoader;
     private ChatFilterHandler chatFilterHandler;
+    private LoaderMonitor loaderMonitor;
+
     private String ignoredPermission;
 
     @Override
     public void onLoad() {
 
         this.chat = new Chat();
-        this.wordCategoryLoader = new WordCategoryLoader();
+        this.loaderMonitor = new LoaderMonitor();
         this.chatFilterHandler = new ChatFilterHandler();
 
         chat.registerHook();
@@ -51,12 +53,6 @@ public class ChatFilterPlugin extends JavaPlugin {
     public void onEnable() {
 
         this.ignoredPermission = getConfig().getString("settings.ignored-permission");
-
-        try {
-            wordCategoryLoader.load();
-        } catch (CreatingCategoryException e) {
-            e.printStackTrace();
-        }
 
         new ChatFilterCommand("chatfilter", "ChatFilter.Admin", true);
 
@@ -199,15 +195,15 @@ public class ChatFilterPlugin extends JavaPlugin {
         return wordCategories;
     }
 
-    public WordCategoryLoader getWordCategoryLoader() {
-        return wordCategoryLoader;
-    }
-
     public ChatFilterHandler getChatFilterHandler() {
         return this.chatFilterHandler;
     }
 
     public String getIgnoredPermission() {
         return this.ignoredPermission;
+    }
+
+    public LoaderMonitor getLoaderMonitor() {
+        return loaderMonitor;
     }
 }
